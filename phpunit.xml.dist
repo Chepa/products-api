@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         failOnRisky="true"
+         failOnWarning="true">
+    <testsuites>
+        <testsuite name="API">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="TOKEN_GENERATE_LIMIT" value="0"/>
+        <env name="TOKEN_GENERATE_WINDOW" value="3600"/>
+        <!-- Через nginx (docker-compose): реальный HTTP для PUT/PATCH и стабильные заголовки -->
+        <env name="PHPUNIT_HTTP_BASE" value="http://nginx"/>
+    </php>
+</phpunit>
